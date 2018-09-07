@@ -3,7 +3,7 @@ package com.volantx.tenderoffer.tenderoffer.entity;
 import javax.persistence.*;
 
 @Entity(name = "address")
-public class Adress {
+public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,11 +16,11 @@ public class Adress {
     @ManyToOne
     private District district;
 
-    public Adress() {
+    public Address() {
     }
 
 
-    public Adress(City city, District district) {
+    public Address(City city, District district) {
         this.city = city;
         this.district = district;
     }

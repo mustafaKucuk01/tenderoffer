@@ -1,9 +1,11 @@
 package com.volantx.tenderoffer.tenderoffer.service;
 
+import com.volantx.tenderoffer.tenderoffer.entity.Order;
 import com.volantx.tenderoffer.tenderoffer.repository.OrderRepository;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
 
 public class OrderService implements ApplicationRunner {
 
@@ -13,4 +15,6 @@ public class OrderService implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
 
     }
+
+    List<Order> getAllOrders(){return orderRepository.findAll();}
 }

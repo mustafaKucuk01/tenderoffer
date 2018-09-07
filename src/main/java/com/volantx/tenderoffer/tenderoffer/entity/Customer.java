@@ -26,10 +26,7 @@ public class Customer {
 
     @ManyToMany
     @Column(name = "addresses")
-    //@JoinTable(name="customer_address",
-      //      joinColumns={@JoinColumn(name="customer_id", referencedColumnName="id")},
-        //    inverseJoinColumns={@JoinColumn(name="address", referencedColumnName="address_id")})
-    private List<Adress> address;
+    private List<Address> address;
 
     @ManyToMany
     private List<Order> orders;
@@ -37,7 +34,7 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(@NotNull String firstName, @NotNull String lastName, String tel, String email, List<Adress> address) {
+    public Customer(@NotNull String firstName, @NotNull String lastName, String tel, String email, List<Address> address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.tel = tel;
@@ -85,11 +82,11 @@ public class Customer {
         this.email = email;
     }
 /*
-    public Adress getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(Adress address) {
+    public void setAddress(Address address) {
         this.address = address;
     }*/
 }

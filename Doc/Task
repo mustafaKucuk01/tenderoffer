@@ -1,0 +1,24 @@
+Tender offer
+package name : com.volantx.tenderoffer
+artifact : tenderoffer
+müşteri kaydı yapılacak objenin adı customer olacak
+Fields : adı, soyadı, tel, email, fatura adresleri,
+
+ürün kaydı ürünün fiyatı
+
+sipariş kaydı
+
+user
+
+*************
+
+siparis:
+    *siparisId
+    *müsteri
+    *ürün
+    *user (satici)
+    *tarih (şimdilik dursun bu)
+    *Adet
+
+
+

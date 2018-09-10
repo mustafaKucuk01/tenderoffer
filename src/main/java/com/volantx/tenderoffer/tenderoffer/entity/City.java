@@ -1,43 +1,48 @@
 package com.volantx.tenderoffer.tenderoffer.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Objects;
 
 @Entity(name = "city")
 public class City {
 
     @Id
-    private int plaqueCode; //plaka no
-
-    private int dialingCode; //posta kodu
+    private Long id;
 
     private String name;
 
     public City() {
     }
 
-    public City(int plaqueCode, int dialingCode, String name) {
-        this.plaqueCode = plaqueCode;
-        this.dialingCode = dialingCode;
+    public City(String name) {
         this.name = name;
     }
 
-    public int getPlaqueCode() {
-        return plaqueCode;
+    public City(Long id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
-    public void setPlaqueCode(int plaqueCode) {
-        this.plaqueCode = plaqueCode;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        City city = (City) o;
+        return Objects.equals(id, city.id);
     }
 
-    public int getDialingCode() {
-        return dialingCode;
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id);
     }
 
-    public void setDialingCode(int dialingCode) {
-        this.dialingCode = dialingCode;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

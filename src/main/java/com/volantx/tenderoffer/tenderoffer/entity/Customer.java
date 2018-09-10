@@ -3,6 +3,7 @@ package com.volantx.tenderoffer.tenderoffer.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Objects;
 
 @Entity(name = "customer")
 public class Customer {
@@ -25,12 +26,11 @@ public class Customer {
 
 
     @ManyToMany
-    @Column(name = "addresses")
     private List<Address> address;
 
-    @ManyToMany
+/*    @ManyToMany
     private List<Order> orders;
-
+*/
     public Customer() {
     }
 
@@ -42,11 +42,25 @@ public class Customer {
         this.address = address;
     }
 
-    public long getId() {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Customer customer = (Customer) o;
+        return Objects.equals(id, customer.id);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id);
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -81,12 +95,12 @@ public class Customer {
     public void setEmail(String email) {
         this.email = email;
     }
-/*
-    public Address getAddress() {
+
+    public List<Address> getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(List<Address> address) {
         this.address = address;
-    }*/
+    }
 }

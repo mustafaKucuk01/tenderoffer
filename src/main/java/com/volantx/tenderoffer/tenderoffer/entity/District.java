@@ -1,41 +1,49 @@
 package com.volantx.tenderoffer.tenderoffer.entity;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity(name = "district")
 public class District {
 
     @Id
-    private int postCode;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    private String name;
 
     @ManyToOne
     private City city;
 
-    private String name;
 
     public District() {
     }
 
-    public District(int postCode, City city, String name) {
-        this.postCode = postCode;
-        this.city = city;
+    public District(String name, City city) {
         this.name = name;
-    }
-
-    public int getPostCode() {
-        return postCode;
-    }
-
-    public void setPostCode(int postCode) {
-        this.postCode = postCode;
-    }
-
-    public City getCity() {
-        return city;
-    }
-
-    public void setCity(City city) {
         this.city = city;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        District district = (District) o;
+        return Objects.equals(id, district.id);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -44,5 +52,13 @@ public class District {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
     }
 }

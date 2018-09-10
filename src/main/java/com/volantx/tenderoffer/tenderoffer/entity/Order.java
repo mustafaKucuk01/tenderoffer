@@ -1,20 +1,20 @@
 package com.volantx.tenderoffer.tenderoffer.entity;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
-@Entity(name = "order")
+//@Entity(name = "order")
 public class Order {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long siparisId;
+  //  @Id
+   // @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long orderId;
 
-    @ManyToMany
+    //@ManyToMany
     private List<Customer> customer;
 
-    @ManyToMany
+  //  @ManyToMany
     private List<Product> product;
 
 
@@ -31,12 +31,26 @@ public class Order {
         this.number = number;
     }
 
-    public long getSiparisId() {
-        return siparisId;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return Objects.equals(orderId, order.orderId);
     }
 
-    public void setSiparisId(long siparisId) {
-        this.siparisId = siparisId;
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(orderId);
+    }
+
+    public Long getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
     }
 
     public List<Customer> getCustomer() {

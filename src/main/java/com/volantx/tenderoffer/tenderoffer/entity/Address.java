@@ -1,13 +1,15 @@
 package com.volantx.tenderoffer.tenderoffer.entity;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Objects;
 
 @Entity(name = "address")
 public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int addressId;
+    private Long addressId;
 
 
     @ManyToOne
@@ -19,17 +21,30 @@ public class Address {
     public Address() {
     }
 
-
     public Address(City city, District district) {
         this.city = city;
         this.district = district;
     }
 
-    public int getAddressId() {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Address address = (Address) o;
+        return Objects.equals(addressId, address.addressId);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(addressId);
+    }
+
+    public Long getAddressId() {
         return addressId;
     }
 
-    public void setAddressId(int addressId) {
+    public void setAddressId(Long addressId) {
         this.addressId = addressId;
     }
 
@@ -41,12 +56,5 @@ public class Address {
         this.city = city;
     }
 
-    public District getDistrict() {
-        return district;
-    }
-
-    public void setDistrict(District district) {
-        this.district = district;
-    }
 
 }

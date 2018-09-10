@@ -13,7 +13,7 @@ user
 *************
 
 siparis:
-    *siparisId
+    *orderId
     *müsteri
     *ürün
     *user (satici)

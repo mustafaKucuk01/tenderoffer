@@ -7,6 +7,7 @@ import java.util.Objects;
 public class City {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String name;
@@ -18,10 +19,7 @@ public class City {
         this.name = name;
     }
 
-    public City(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+
 
     @Override
     public boolean equals(Object o) {

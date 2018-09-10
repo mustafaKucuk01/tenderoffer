@@ -15,10 +15,14 @@ public class CityService implements ApplicationRunner {
 
     private CityRepository cityRepository;
 
+    public CityService(CityRepository cityRepository) {
+        this.cityRepository = cityRepository;
+    }
+
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        City c1 = new City(1l, "Adana");
-        City c2 = new City(2l, "Adıyaman");
+        City c1 = new City("Adana");
+        City c2 = new City("Adıyaman");
 
         System.out.println(c1.getName() + " " + c1.getId());
         System.out.println(c2.getName() + " " + c2.getId());

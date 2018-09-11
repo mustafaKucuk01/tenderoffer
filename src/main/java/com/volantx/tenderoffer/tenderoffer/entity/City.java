@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity(name = "city")
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"name"})})
 public class City {
 
     @Id

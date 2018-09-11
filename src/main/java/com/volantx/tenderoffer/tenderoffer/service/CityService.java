@@ -23,13 +23,13 @@ public class CityService implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         City c1 = new City("Adana");
         City c2 = new City("Adıyaman");
-
+        City c3 = new City("Ankara");
 
         try {
-            Stream.of(c1, c2).forEach(this::addCity);
+            Stream.of(c1, c2, c3).forEach(this::addCity);
         } catch (Exception e) {
-            System.err.println("CityService -> run method");
-            e.printStackTrace();
+           // System.err.println("CityService -> run method");
+            //e.printStackTrace();
         }
 
     }
@@ -40,7 +40,29 @@ public class CityService implements ApplicationRunner {
 
     public City addCity(City city) {
         System.out.println("Adding city "+ city.toString());
+        Optional<City> byName = cityRepository.findByName(city.getName());
+        if (byName.isPresent()){
+            throw new RuntimeException("City Already added");
+        }
+        return cityRepository.save(city);
+    }
+
+    public City updateCity(Long id, City city){
 
         return cityRepository.save(city);
     }
+
+    public void deleteCity(Long id){
+         cityRepository.delete(get(id));
+    }
+
+    public City get(Long id){
+        return cityRepository.getOne(id);
+    }
+
+    public City getByName(String name){
+        Optional<City> city = cityRepository.findByName(name);
+        return city.get();
+    }
+
 }

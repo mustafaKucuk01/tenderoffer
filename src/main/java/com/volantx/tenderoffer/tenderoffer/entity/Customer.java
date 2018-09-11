@@ -29,7 +29,7 @@ public class Customer {
     private List<Address> address;
 
 /*    @ManyToMany
-    private List<Order> orders;
+    private List<Orderr> orders;
 */
     public Customer() {
     }

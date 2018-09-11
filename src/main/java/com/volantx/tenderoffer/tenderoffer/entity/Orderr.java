@@ -4,17 +4,17 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
 
-//@Entity(name = "order")
-public class Order {
+@Entity
+public class Orderr {
 
-  //  @Id
-   // @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long orderId;
 
-    //@ManyToMany
+    @ManyToMany
     private List<Customer> customer;
 
-  //  @ManyToMany
+    @ManyToMany
     private List<Product> product;
 
 
@@ -22,10 +22,10 @@ public class Order {
 
     private int number;
 
-    public Order() {
+    public Orderr() {
     }
 
-    public Order(List<Customer> customer, List<Product> product, int number) {
+    public Orderr(List<Customer> customer, List<Product> product, int number) {
         this.customer = customer;
         this.product = product;
         this.number = number;
@@ -35,8 +35,8 @@ public class Order {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Order order = (Order) o;
-        return Objects.equals(orderId, order.orderId);
+        Orderr orderr = (Orderr) o;
+        return Objects.equals(orderId, orderr.orderId);
     }
 
     @Override

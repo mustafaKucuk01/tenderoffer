@@ -57,7 +57,7 @@ public class CityService implements ApplicationRunner {
     }
 
     public City get(Long id){
-        return cityRepository.getOne(id);
+        return cityRepository.findById(id).get();
     }
 
     public City getByName(String name){
@@ -65,4 +65,7 @@ public class CityService implements ApplicationRunner {
         return city.get();
     }
 
+    public void deleteByName(String name){
+        deleteCity(getByName(name).getId());
+    }
 }

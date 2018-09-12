@@ -28,8 +28,7 @@ public class CityService implements ApplicationRunner {
         try {
             Stream.of(c1, c2, c3).forEach(this::addCity);
         } catch (Exception e) {
-           // System.err.println("CityService -> run method");
-            //e.printStackTrace();
+
         }
 
     }
@@ -40,7 +39,7 @@ public class CityService implements ApplicationRunner {
 
     public City addCity(City city) {
         System.out.println("Adding city "+ city.toString());
-        Optional<City> byName = cityRepository.findByName(city.getName());
+        Optional<City> byName = cityRepository.findById(city.getId());
         if (byName.isPresent()){
             throw new RuntimeException("City Already added");
         }
@@ -57,15 +56,14 @@ public class CityService implements ApplicationRunner {
     }
 
     public City get(Long id){
-        return cityRepository.findById(id).get();
+        System.out.println("Get city " + id);
+        Optional<City> byId = cityRepository.findById(id);
+        if (!byId.isPresent()) {
+            throw new RuntimeException("Use not found");
+        }
+        return byId.get();
     }
 
-    public City getByName(String name){
-        Optional<City> city = cityRepository.findByName(name);
-        return city.get();
-    }
 
-    public void deleteByName(String name){
-        deleteCity(getByName(name).getId());
-    }
+
 }

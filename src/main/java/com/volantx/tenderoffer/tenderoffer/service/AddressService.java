@@ -7,6 +7,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -23,12 +24,16 @@ public class AddressService implements ApplicationRunner {
     @Autowired
     private DistrictService districtService;
 
+
+
     public AddressService() {
     }
 
     public AddressService(AddressRepository addressRepository) {
         this.addressRepository = addressRepository;
     }
+
+
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -56,5 +61,14 @@ public class AddressService implements ApplicationRunner {
         }
         return addressRepository.save(address);
     }
+
+    public Address getAddress(Long id){
+        Optional<Address> byId = addressRepository.findByAddressId(id);
+        if (!byId.isPresent()){
+            throw new RuntimeException("Adress not founded");
+        }
+        return byId.get();
+    }
+
 
 }

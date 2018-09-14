@@ -1,0 +1,15 @@
+    *Eğer adressService deki run metodunun içini tamamen yoruma
+dönüştürüp bir kere çalıştırırsak ve daha sonra o yorum satırlarını
+normal hale getirirsek çalışıyor. Ama bunu yapmaz ve direkt çalıştırırsak
+hata veriyor. Sanırım city ve district' leri adreslerden önce eklemek zorundayız.
+
+    *City veya District eklerken Optional<City> byId = cityRepository.
+findById(city.getId()); şeklinde yapamıyorum. Neden ?
+
+    * findById deddiğim nerdeyse her yerde sıkıntı çıktı. Id yi nasıl kullanmamız
+gerektiği ile ilgili kafa karışıklığı içerisindeyim.Mesela customerService nin
+addCustomer metodunda
+
+    *Customer' ların birden fazla adresi olabilir dedim. CustomerService' deki
+run metodunda bir customer oluştururken benim yaptığım gibi olmaması gerekli diye
+bir düşünce oluştu bende.

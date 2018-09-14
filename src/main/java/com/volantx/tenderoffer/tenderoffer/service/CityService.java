@@ -49,6 +49,16 @@ public class CityService implements ApplicationRunner {
         return cityRepository.save(city);
     }
 
+    //Bu metot deneme amaçlı(Bu metot neden çalışmıyor yada addressServicedeki addAddress neden çalışıyor)
+    public City addCityWithId(City city){
+        System.out.println("Adding city "+ city.toString());
+        Optional<City> byId = cityRepository.findById(city.getId());
+        if (byId.isPresent()){
+            throw new RuntimeException("City Already added :" + city.toString());
+        }
+        return cityRepository.save(city);
+    }
+
     public City updateCity(Long id, City city){
         System.out.println("simdilik bos kalsın");
         return cityRepository.save(city);

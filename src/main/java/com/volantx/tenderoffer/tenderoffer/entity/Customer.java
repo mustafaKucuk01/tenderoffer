@@ -2,6 +2,7 @@ package com.volantx.tenderoffer.tenderoffer.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -28,11 +29,12 @@ public class Customer {
     @ManyToMany
     private List<Address> address;
 
-/*    @ManyToMany
+    @ManyToMany
     private List<Orderr> orders;
-*/
+
     public Customer() {
     }
+
 
     public Customer(@NotNull String firstName, @NotNull String lastName, String tel, String email, List<Address> address) {
         this.firstName = firstName;
@@ -102,6 +104,14 @@ public class Customer {
 
     public void setAddress(List<Address> address) {
         this.address = address;
+    }
+
+    public List<Orderr> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Orderr> orders) {
+        this.orders = orders;
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.volantx.tenderoffer.tenderoffer.service;
 
 import com.volantx.tenderoffer.tenderoffer.entity.User;
 import com.volantx.tenderoffer.tenderoffer.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import java.util.stream.Stream;
 @Service
 public class UserService implements ApplicationRunner {
 
+    @Autowired
     private UserRepository userRepository;
 
     public UserService(UserRepository userRepository) {

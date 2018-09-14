@@ -14,6 +14,7 @@ import java.util.stream.Stream;
 @Service
 public class AddressService implements ApplicationRunner {
 
+    @Autowired
     private AddressRepository addressRepository;
 
     @Autowired
@@ -22,14 +23,17 @@ public class AddressService implements ApplicationRunner {
     @Autowired
     private DistrictService districtService;
 
+    public AddressService() {
+    }
+
     public AddressService(AddressRepository addressRepository) {
         this.addressRepository = addressRepository;
     }
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        Address a1 = new Address(cityService.get(1l), districtService.getDistrict(1l));
-        Address a2 = new Address(cityService.get(1l), districtService.getDistrict(2l));
+        Address a1 = new Address(cityService.getCityWithName("Adana"), districtService.getDistrictWithName("İmamoğlu"));
+        Address a2 = new Address(cityService.getCityWithName("Adana"), districtService.getDistrictWithName("Kozan"));
 
         System.out.println(a1.toString());
         System.out.println(a2.toString());
@@ -43,9 +47,10 @@ public class AddressService implements ApplicationRunner {
 
     public List<Address> all(){return addressRepository.findAll();}
 
+
     public Address addAddress(Address address){
         System.out.println("Adding address :" + address.toString());
-        Optional<Address> byId = addressRepository.findById(address.getAddressId());
+        Optional<Address> byId = addressRepository.findByAddressId(address.getAddressId());
         if (byId.isPresent()){
             throw new RuntimeException("Adress is already added");
         }

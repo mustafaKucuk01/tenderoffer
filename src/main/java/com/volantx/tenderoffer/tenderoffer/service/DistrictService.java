@@ -14,21 +14,25 @@ import java.util.stream.Stream;
 @Service
 public class DistrictService implements ApplicationRunner {
 
-    private DistrictRepository districtRepository;
-
     @Autowired
-    private CityService cityService;
-
+    private DistrictRepository districtRepository;
 
     public DistrictService(DistrictRepository districtRepository) {
         this.districtRepository = districtRepository;
     }
 
+    @Autowired
+    private CityService cityService;
+
+
+
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
-        District d1 = new District("İmamoğlu", cityService.get(1l));
-        District d2 = new District("Kozan", cityService.get(1l));
+        District d1 = new District("İmamoğlu", cityService.getCityWithName("Adana"));
+        District d2 = new District("Kozan", cityService.getCityWithName("Adana"));
+
+        System.out.println(cityService.getCityWithName("Adana").toString());
 
         try {
             Stream.of(d1, d2).forEach(this::addDistrict);
@@ -41,7 +45,7 @@ public class DistrictService implements ApplicationRunner {
 
     public District addDistrict(District district){
         System.out.println("Adding district :" + district.toString());
-        Optional<District> byName = districtRepository.findById(district.getId());
+        Optional<District> byName = districtRepository.findByName(district.getName());
         if (byName.isPresent()){
             throw new RuntimeException("District is already added");
         }
@@ -64,6 +68,7 @@ public class DistrictService implements ApplicationRunner {
     }
 
 
+    // Bu metot sıkıntılı ama kullanmadığım için surmasında sıkıntı yok, silmiyorum
     public District getDistrict(Long id){
         System.out.println("Get district : " + id);
         Optional<District> byId = districtRepository.findById(id);
@@ -73,5 +78,12 @@ public class DistrictService implements ApplicationRunner {
         return byId.get();
     }
 
-
+    public District getDistrictWithName(String name){
+        System.out.println("Get District :" + name);
+        Optional<District> byName = districtRepository.findByName(name);
+        if (!byName.isPresent()){
+            throw new RuntimeException("District not found with name :" + name);
+        }
+        return byName.get();
+    }
 }

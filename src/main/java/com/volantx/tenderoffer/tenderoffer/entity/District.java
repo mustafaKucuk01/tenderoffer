@@ -62,4 +62,13 @@ public class District {
     public void setCity(City city) {
         this.city = city;
     }
+
+    @Override
+    public String toString() {
+        return "District{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", city=" + city +
+                '}';
+    }
 }

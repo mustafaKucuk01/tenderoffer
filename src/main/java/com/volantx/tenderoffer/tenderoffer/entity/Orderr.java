@@ -76,4 +76,14 @@ public class Orderr {
     public void setNumber(int number) {
         this.number = number;
     }
+
+    @Override
+    public String toString() {
+        return "Orderr{" +
+                "orderId=" + orderId +
+                ", customer=" + customer +
+                ", product=" + product +
+                ", number=" + number +
+                '}';
+    }
 }

@@ -13,3 +13,5 @@ addCustomer metodunda
     *Customer' ların birden fazla adresi olabilir dedim. CustomerService' deki
 run metodunda bir customer oluştururken benim yaptığım gibi olmaması gerekli diye
 bir düşünce oluştu bende.
+
+    *userService deki updateUser() metodunda bulunan if' i anlamadım.

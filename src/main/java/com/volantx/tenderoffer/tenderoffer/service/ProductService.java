@@ -25,7 +25,11 @@ public class ProductService implements ApplicationRunner {
         Product p1 = new Product("Bilgisayar", "Casper", 2500);
         Product p2 = new Product("Telefon", "Samsung", 1100);
 
-        Stream.of(p1, p2).forEach(this::addProduct);
+        try {
+            Stream.of(p1, p2).forEach(this::addProduct);
+        } catch (Exception e) {
+
+        }
 
     }
 
@@ -47,6 +51,18 @@ public class ProductService implements ApplicationRunner {
             throw new RuntimeException("Product not founded");
         }
         return productRepository.getOne(id);
+    }
+
+    public Product updateProduct(Long id, Product product){
+        getProduct(id);
+        product.setProductId(id);
+
+        return productRepository.save(product);
+    }
+
+    public void delete(Long id){
+        System.out.println("Deleting product :" + getProduct(id).toString());
+        productRepository.delete(getProduct(id));
     }
 
 }

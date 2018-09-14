@@ -53,13 +53,9 @@ public class DistrictService implements ApplicationRunner {
     }
 
     public District updateDistrict(Long id, District district){
-        Optional<District> byId = districtRepository.findById(id);
         getDistrict(id);
         district.setId(id);
-        if (byId.isPresent() && !byId.get().getId().equals(district.getId())){
-            System.out.println("Already added");
-            throw new RuntimeException("Already added");
-        }
+
         return districtRepository.save(district);
     }
 

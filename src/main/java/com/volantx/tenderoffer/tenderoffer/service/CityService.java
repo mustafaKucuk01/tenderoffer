@@ -60,12 +60,14 @@ public class CityService implements ApplicationRunner {
     }
 
     public City updateCity(Long id, City city){
-        System.out.println("simdilik bos kalsın");
+        get(id);
+        city.setId(id);
+
         return cityRepository.save(city);
     }
 
     public void deleteCity(Long id){
-        System.out.println("simdilik bos kalsın");
+        System.out.println("City is deleting :" + get(id).toString());
         cityRepository.delete(get(id));
     }
 

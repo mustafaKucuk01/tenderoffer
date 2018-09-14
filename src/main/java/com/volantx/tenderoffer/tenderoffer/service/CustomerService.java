@@ -29,7 +29,7 @@ public class CustomerService implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         Customer c1 = new Customer("Mustafa", "Küçük", "5457375317", "mustafa@gmail.com",
                 new ArrayList<>());
-        c1.getAddress().add(addressService.getAddress(10l));
+        c1.getAddress().add(addressService.getAddress(66l));
 
         try {
             Stream.of(c1).forEach(this::addCustomer);
@@ -60,5 +60,17 @@ public class CustomerService implements ApplicationRunner {
             throw new RuntimeException("Customer not founded" );
         }
         return customerRepository.getOne(id);
+    }
+
+    public void deleteCustomer(Long id){
+        System.out.println("Deleting customer :" + getCustomer(id).toString());
+        customerRepository.delete(getCustomer(id));
+    }
+
+    public Customer updateCustomer(Long id, Customer customer){
+        getCustomer(id);
+        customer.setId(id);
+
+        return customerRepository.save(customer);
     }
 }

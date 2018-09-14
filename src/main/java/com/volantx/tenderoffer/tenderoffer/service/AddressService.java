@@ -70,5 +70,17 @@ public class AddressService implements ApplicationRunner {
         return byId.get();
     }
 
+    public Address updateAddress(Long id, Address address){
 
+        getAddress(id);
+        address.setAddressId(id);
+        return addressRepository.save(address);
+    }
+
+    public void deleteAddress(Long id){
+        System.out.println("Deleting the address :" + getAddress(id).toString());
+        addressRepository.delete(getAddress(id));
+    }
+
+    
 }

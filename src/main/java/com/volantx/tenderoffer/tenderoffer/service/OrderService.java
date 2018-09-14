@@ -17,6 +17,7 @@ import java.util.stream.Stream;
 @Service
 public class OrderService implements ApplicationRunner {
 
+    @Autowired
     private OrderRepository orderRepository;
 
     @Autowired
@@ -35,13 +36,17 @@ public class OrderService implements ApplicationRunner {
         o1.getCustomer().add(customerService.getCustomer(30l));
         o1.getProduct().add(productService.getProduct(33l));
 
-        Stream.of(o1).forEach(this::addOrder);
+        try {
+            Stream.of(o1).forEach(this::addOrder);
+        } catch (Exception e) {
+
+        }
     }
 
     public List<Orderr> listAll(){return orderRepository.findAll();}
 
     public Orderr addOrder(Orderr orderr){
-      //  System.out.println("Adding order :" + orderr.toString());
+        System.out.println("Adding order :" + orderr.toString());
 
       //  Optional<Orderr> byId = orderRepository.findById(orderr.getOrderId());
         Optional<Orderr> byCustomer = orderRepository.findByCustomer(customerService.getCustomer(30l));
@@ -50,5 +55,26 @@ public class OrderService implements ApplicationRunner {
             throw new RuntimeException("Order already added");
         }
         return orderRepository.save(orderr);
+    }
+
+    public Orderr updateOrder(Long id, Orderr order){
+        get(id);
+        order.setOrderId(id);
+
+        return orderRepository.save(order);
+    }
+
+    public Orderr get(Long id){
+        Optional<Orderr> byId = orderRepository.findById(id);
+        if (!byId.isPresent()){
+            throw new RuntimeException("Order not founded :" + id);
+        }
+
+        return byId.get();
+    }
+
+    public void delete(Long id){
+        System.out.println("deleting order :" + get(id));
+        orderRepository.delete(get(id));
     }
 }

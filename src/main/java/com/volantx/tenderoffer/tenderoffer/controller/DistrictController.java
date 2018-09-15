@@ -2,10 +2,7 @@ package com.volantx.tenderoffer.tenderoffer.controller;
 
 import com.volantx.tenderoffer.tenderoffer.entity.District;
 import com.volantx.tenderoffer.tenderoffer.service.DistrictService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,14 +17,27 @@ public class DistrictController {
     }
 
     @GetMapping
-    public List<District> list(){
+    public List<District> listDistricts(){
         return districtService.all();
     }
 
     @GetMapping("/{id}")
-    public District read(@PathVariable("id") Long id){
+    public District readDistrict(@PathVariable("id") Long id){
         return districtService.getDistrict(id);
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteDistrict(@PathVariable("id") Long id){
+        districtService.deleteDistrict(id);
+    }
 
+    @PostMapping
+    public District addDistrict(@RequestBody District district){
+        return districtService.addDistrict(district);
+    }
+
+    @PutMapping("/{id}")
+    public District updateDistrict(@PathVariable("id")Long id,@RequestBody District district){
+        return districtService.updateDistrict(id, district);
+    }
 }

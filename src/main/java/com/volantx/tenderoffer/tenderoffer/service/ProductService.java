@@ -60,7 +60,7 @@ public class ProductService implements ApplicationRunner {
         return productRepository.save(product);
     }
 
-    public void delete(Long id){
+    public void deleteProduct(Long id){
         System.out.println("Deleting product :" + getProduct(id).toString());
         productRepository.delete(getProduct(id));
     }

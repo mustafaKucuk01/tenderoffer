@@ -17,15 +17,15 @@ public class CityController {
     }
 
     @GetMapping
-    public List<City> list(){ return cityService.all(); }
+    public List<City> listCities(){ return cityService.all(); }
 
     @GetMapping("/{id}")
-    public City read(@PathVariable("id") Long id){
+    public City readCity(@PathVariable("id") Long id){
         return cityService.get(id);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Long id){
+    public void deleteCity(@PathVariable("id") Long id){
         cityService.deleteCity(id);
     }
 
@@ -35,7 +35,7 @@ public class CityController {
     }
 
     @PutMapping("/{id}")
-    public City updateUser(@PathVariable("id")Long id,@RequestBody City city){
+    public City updateCity(@PathVariable("id")Long id,@RequestBody City city){
         return cityService.updateCity(id,city);
     }
 

@@ -39,7 +39,7 @@ public class CustomerService implements ApplicationRunner {
 
     }
 
-    List<Customer> listAll(){
+    public List<Customer> listAll(){
         return customerRepository.findAll();
     }
 

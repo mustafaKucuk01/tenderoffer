@@ -73,7 +73,7 @@ public class OrderService implements ApplicationRunner {
         return byId.get();
     }
 
-    public void delete(Long id){
+    public void deleteOrder(Long id){
         System.out.println("deleting order :" + get(id));
         orderRepository.delete(get(id));
     }

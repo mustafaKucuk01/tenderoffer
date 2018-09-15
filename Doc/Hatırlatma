@@ -1,0 +1,2 @@
+    * Constructor oluşturmayı unutma (Biraz önce controllerda service nesnesi
+oluşturmuştum ama constructor oluşturmadığımdan olmadı.)

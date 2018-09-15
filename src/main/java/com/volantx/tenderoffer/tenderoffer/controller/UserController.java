@@ -19,17 +19,17 @@ public class UserController {
 
 
     @GetMapping
-    public List<User> list(){
+    public List<User> listUsers(){
         return userService.all();
     }
 
     @GetMapping("/{id}")
-    public User read(@PathVariable("id") Long id){
+    public User readUser(@PathVariable("id") Long id){
         return userService.get(id);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Long id){
+    public void deleteUser(@PathVariable("id") Long id){
         userService.deleteUser(id);
     }
 
